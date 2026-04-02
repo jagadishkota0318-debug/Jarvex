@@ -36,8 +36,19 @@
 .home-card-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:gap .2s,color .3s}
 
 @media(max-width:900px){
-  .hero{padding:100px 24px 60px}.hero-float,.hero-kc-bg{display:none}
+  .hero{padding:100px 24px 60px;text-align:center}.hero-float{display:none}
+  .hero-kc-bg{right:auto;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;opacity:0.06}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-actions{justify-content:center}
   .home-cards{grid-template-columns:1fr;padding:60px 24px}
+}
+@media(max-width:479px){
+  .hero{padding:90px 16px 48px}
+  .hero-kc-bg{width:300px;height:300px;opacity:0.05}
+  .home-cards{padding:40px 16px}
+  .home-card{padding:36px 20px}
+  .home-card h3{font-size:24px}
+  .home-card p{font-size:13px}
 }
 </style>
 <link rel="stylesheet" href="chatbot-styles.css">

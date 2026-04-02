@@ -120,13 +120,14 @@ footer{border-top:1px solid var(--subtle)}
   .nav-link:hover{background:rgba(232,255,71,0.08);color:var(--accent)}
   .nav-link.active{background:rgba(232,255,71,0.12);color:var(--accent);border-bottom:2px solid var(--accent)}
   .nav-cta{padding:16px 24px;margin:16px 0 0;font-size:12px;border-radius:0;text-align:center;display:block;border-top:1px solid rgba(232,255,71,0.1)}
-  .nav-toggle{display:flex;z-index:460;width:40px;height:40px;padding:8px}
+  .nav-toggle{display:flex;z-index:460;width:44px;height:44px;padding:10px;align-items:center;justify-content:center}
+  .cursor,.cursor-ring{display:none}
   
-  .page-header{padding:110px 20px 60px}
+  .page-header{padding:110px 20px 60px;text-align:center}
   .page-title{font-size:clamp(40px,9vw,72px)}
   .page-badge{font-size:8px;padding:4px 10px}
-  .page-sub{font-size:15px;margin-top:20px}
-  .page-header-kc{display:none}
+  .page-sub{font-size:15px;margin-top:20px;margin-left:auto;margin-right:auto}
+  .page-header-kc{right:auto;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;opacity:0.06}
   
   .section-label{font-size:9px;margin-bottom:40px;gap:10px}
   .section-label::before{width:28px}
@@ -159,12 +160,12 @@ footer{border-top:1px solid var(--subtle)}
   .nav-link:hover{background:rgba(232,255,71,0.08);color:var(--accent)}
   .nav-link.active{background:rgba(232,255,71,0.12);color:var(--accent);border-bottom:2px solid var(--accent)}
   .nav-cta{padding:16px 24px;margin:16px 0 0;font-size:12px;border-radius:0;text-align:center;display:block;border-top:1px solid rgba(232,255,71,0.1)}
-  .nav-toggle{display:flex;z-index:460;width:40px;height:40px;padding:8px}
+  .nav-toggle{display:flex;z-index:460;width:44px;height:44px;padding:10px;align-items:center;justify-content:center}
   
-  .page-header{padding:100px 16px 50px}
+  .page-header{padding:100px 16px 50px;text-align:center}
   .page-title{font-size:clamp(36px,10vw,52px);line-height:1}
-  .page-sub{font-size:14px;margin-top:16px}
-  .page-header-kc{display:none}
+  .page-sub{font-size:14px;margin-top:16px;margin-left:auto;margin-right:auto}
+  .page-header-kc{right:auto;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;opacity:0.05}
   
   .section-label{font-size:9px;margin-bottom:36px}
   .section-label::before{width:24px}
@@ -189,18 +190,19 @@ footer{border-top:1px solid var(--subtle)}
 }
 
 /* Medium (768px - 1023px): Tablets */
-@media(max-width:1023px){
+@media(min-width:768px) and (max-width:1023px){
   nav{padding:15px 32px}
   .logo-text{font-size:24px;letter-spacing:3px}
   .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(8,8,8,.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:450}
   .nav-links.open{display:flex}
-  .nav-toggle{display:flex;z-index:460}
+  .nav-toggle{display:flex;z-index:460;width:44px;height:44px;padding:10px;align-items:center;justify-content:center}
+  .cursor,.cursor-ring{display:none}
   
-  .page-header{padding:120px 32px 70px}
+  .page-header{padding:120px 32px 70px;text-align:center}
   .page-title{font-size:clamp(48px,8vw,86px)}
   .page-badge{font-size:9px;padding:5px 11px}
-  .page-sub{font-size:15px;margin-top:22px;max-width:100%}
-  .page-header-kc{display:none}
+  .page-sub{font-size:15px;margin-top:22px;max-width:100%;margin-left:auto;margin-right:auto}
+  .page-header-kc{right:auto;left:50%;transform:translate(-50%,-50%);width:440px;height:440px;opacity:0.06}
   
   .section-label{margin-bottom:48px}
   
