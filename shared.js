@@ -1,3 +1,12 @@
+// SYNC KC ANIMATIONS — use Date.now() so rotation is continuous across page navigations
+(function syncKC(){
+  const t=Date.now()/1000;
+  document.querySelectorAll('.kc-outer,.kc-middle,.kc-inner,.kc-center-dot').forEach(el=>{
+    const dur=parseFloat(getComputedStyle(el).animationDuration);
+    if(dur>0) el.style.animationDelay=-(t%dur)+'s';
+  });
+})();
+
 // CURSOR
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
@@ -23,7 +32,10 @@ if(window.innerWidth<=767){
   // RAF rotation — setAttribute rotate(angle) pivots around (0,0) = center of viewBox
   // Speeds match desktop hero kc-bg: outer 40s, middle 28s (reverse), inner 16s
   const wmOuter=wm.querySelector('#wm-outer'),wmMiddle=wm.querySelector('#wm-middle'),wmInner=wm.querySelector('#wm-inner');
-  let oA=0,mA=0,iA=0,prev=performance.now();
+  // Sync with Date.now() so rotation continues across page navigations
+  const epoch=Date.now()/1000;
+  let oA=(epoch*(360/40))%360, mA=(360-(epoch*(360/28))%360)%360, iA=(epoch*(360/16))%360;
+  let prev=performance.now();
   (function tick(t){
     const d=Math.min((t-prev)/1000,0.05); prev=t;
     oA=(oA+9*d)%360;        // 40s full rotation
@@ -74,25 +86,6 @@ document.querySelectorAll('.service-card,.why-item,.process-step,.price-card,.te
   el.style.transition=`opacity 0.55s ${i*0.07}s ease,transform 0.55s ${i*0.07}s ease,background 0.3s,padding-left 0.3s`;
   obs.observe(el);
 });
-
-// WAITLIST FORM (used on index + waitlist page)
-let wlCount=Math.floor(Math.random()*90)+130;
-function handleWaitlist(){
-  const inp=document.getElementById('wlEmail');
-  if(!inp)return;
-  const email=inp.value.trim();
-  if(!email||!email.includes('@')){
-    inp.style.outline='1px solid #ff4d4d';inp.placeholder='Please enter a valid email';
-    setTimeout(()=>{inp.style.outline='';inp.placeholder='Enter your email address'},2200);return;
-  }
-  wlCount++;
-  const wrap=document.getElementById('wlFormWrap'),suc=document.getElementById('wlSuccess');
-  if(wrap)wrap.style.display='none';
-  if(suc){suc.style.display='block';const c=document.getElementById('wlCount');if(c)c.textContent=wlCount;}
-  try{const wl=JSON.parse(localStorage.getItem('jarvex_waitlist')||'[]');wl.push({email,ts:new Date().toISOString()});localStorage.setItem('jarvex_waitlist',JSON.stringify(wl))}catch(e){}
-}
-const wlInput=document.getElementById('wlEmail');
-if(wlInput)wlInput.addEventListener('keydown',e=>{if(e.key==='Enter')handleWaitlist()});
 
 // CONTACT FORM
 function submitContact(){
