@@ -37,7 +37,7 @@ const chatbotData = {
     },
     contact: {
       terms: ["contact", "email", "call", "phone", "reach", "connect"],
-      response: "📞 **Get In Touch**\n\n📧 **Email:** hello@jarvex.in\n🔗 **Website:** www.jarvex.in\n📝 **Contact Form:** Check our site\n🗓️ **Book a Call:** Let's chat!\n\nReady to start? We're waiting! 🎉"
+      response: "📞 **Get In Touch**\n\n📧 **Email:** info@jarvex.in\n🔗 **Website:** www.jarvex.in\n📝 **Contact Form:** Check our site\n🗓️ **Book a Call:** Let's chat!\n\nReady to start? We're waiting! 🎉"
     },
     timeline: {
       terms: ["timeline", "how long", "duration", "when", "schedule"],

@@ -1,11 +1,12 @@
-// SYNC KC ANIMATIONS — use Date.now() so rotation is continuous across page navigations
-(function syncKC(){
+// SYNC KC ANIMATIONS — head script handles first-paint sync via CSS animation-delay.
+// This re-syncs any dynamically added KC elements (watermark) using their actual durations.
+function syncKCElements(root){
   const t=Date.now()/1000;
-  document.querySelectorAll('.kc-outer,.kc-middle,.kc-inner,.kc-center-dot').forEach(el=>{
+  (root||document).querySelectorAll('.kc-outer,.kc-middle,.kc-inner,.kc-center-dot').forEach(el=>{
     const dur=parseFloat(getComputedStyle(el).animationDuration);
     if(dur>0) el.style.animationDelay=-(t%dur)+'s';
   });
-})();
+}
 
 // CURSOR
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
@@ -17,35 +18,15 @@ document.querySelectorAll('a,button,.service-card,.why-item,.price-card,.testi-c
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='34px';ring.style.height='34px'});
 });
 
-// MOBILE WATERMARK - matches desktop hero kc-bg opacity (0.07) — subtle ambient background
-if(window.innerWidth<=767){
-  const wm=document.createElement('svg');
-  wm.setAttribute('viewBox','-160 -160 320 320');
-  wm.setAttribute('xmlns','http://www.w3.org/2000/svg');
-  // opacity 0.08 matches desktop hero-kc-bg (opacity:0.07) — background, not foreground
-  wm.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;pointer-events:none;z-index:0;opacity:0.08';
-
-  // Inner fill matches body background exactly (#080808) to avoid center-disc artifact
-  wm.innerHTML=`<circle r="152" fill="none" stroke="#e8ff47" stroke-width="1.5"/><g id="wm-outer"><polygon points="0,-152 8,-120 -8,-120" fill="#e8ff47"/><polygon points="76,-131 68,-102 55,-112" fill="#e8ff47"/><polygon points="131,-76 110,-55 102,-72" fill="#c8e800"/><polygon points="152,0 120,8 120,-8" fill="#e8ff47"/><polygon points="131,76 102,72 110,55" fill="#c8e800"/><polygon points="76,131 55,112 68,102" fill="#e8ff47"/><polygon points="0,152 -8,120 8,120" fill="#e8ff47"/><polygon points="-76,131 -68,102 -55,112" fill="#e8ff47"/><polygon points="-131,76 -110,55 -102,72" fill="#c8e800"/><polygon points="-152,0 -120,-8 -120,8" fill="#e8ff47"/><polygon points="-131,-76 -102,-72 -110,-55" fill="#c8e800"/><polygon points="-76,-131 -55,-112 -68,-102" fill="#e8ff47"/></g><circle r="114" fill="none" stroke="#e8ff47" stroke-width="1.5"/><g id="wm-middle"><circle cx="0" cy="-114" r="5" fill="#e8ff47"/><circle cx="57" cy="-99" r="4" fill="#c8e800"/><circle cx="99" cy="-57" r="4" fill="#c8e800"/><circle cx="114" cy="0" r="5" fill="#e8ff47"/><circle cx="99" cy="57" r="4" fill="#c8e800"/><circle cx="57" cy="99" r="4" fill="#c8e800"/><circle cx="0" cy="114" r="5" fill="#e8ff47"/><circle cx="-57" cy="99" r="4" fill="#c8e800"/><circle cx="-99" cy="57" r="4" fill="#c8e800"/><circle cx="-114" cy="0" r="5" fill="#e8ff47"/><circle cx="-99" cy="-57" r="4" fill="#c8e800"/><circle cx="-57" cy="-99" r="4" fill="#c8e800"/></g><circle r="70" fill="#080808" stroke="#e8ff47" stroke-width="1.5"/><g id="wm-inner"><polygon points="0,-70 5,-45 -5,-45" fill="#7fa800"/><polygon points="60,-35 41,-22 35,-32" fill="#7fa800"/><polygon points="60,35 35,32 41,22" fill="#7fa800"/><polygon points="0,70 -5,45 5,45" fill="#7fa800"/><polygon points="-60,35 -41,22 -35,32" fill="#7fa800"/><polygon points="-60,-35 -35,-32 -41,-22" fill="#7fa800"/></g><circle r="32" fill="#e8ff47"/><circle r="20" fill="#080808"/><circle r="10" fill="#e8ff47"/><circle r="4" fill="#080808"/>`;
+// MOBILE/TABLET WATERMARK — GPU-accelerated CSS animations (no RAF loop)
+if(window.innerWidth<=1023){
+  const wmSize=window.innerWidth<=479?'320px':window.innerWidth<=767?'420px':'560px';
+  const tmp=document.createElement('div');
+  tmp.innerHTML='<svg viewBox="-340 -340 680 680" xmlns="http://www.w3.org/2000/svg" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:'+wmSize+';height:'+wmSize+';pointer-events:none;z-index:1;opacity:0.07"><circle r="338" fill="none" stroke="#e8ff47" stroke-width="1" opacity="0.8"/><g class="kc-outer" style="animation-duration:40s"><polygon points="0,-338 14,-268 -14,-268" fill="#e8ff47"/><polygon points="169,-293 152,-226 123,-245" fill="#e8ff47" opacity="0.85"/><polygon points="293,-169 245,-123 226,-152" fill="#c8e800" opacity="0.78"/><polygon points="338,0 268,14 268,-14" fill="#e8ff47"/><polygon points="293,169 226,152 245,123" fill="#c8e800" opacity="0.78"/><polygon points="169,293 123,245 152,226" fill="#e8ff47" opacity="0.85"/><polygon points="0,338 -14,268 14,268" fill="#e8ff47"/><polygon points="-169,293 -152,226 -123,245" fill="#e8ff47" opacity="0.85"/><polygon points="-293,169 -245,123 -226,152" fill="#c8e800" opacity="0.78"/><polygon points="-338,0 -268,-14 -268,14" fill="#e8ff47"/><polygon points="-293,-169 -226,-152 -245,-123" fill="#c8e800" opacity="0.78"/><polygon points="-169,-293 -123,-245 -152,-226" fill="#e8ff47" opacity="0.85"/></g><circle r="254" fill="none" stroke="#e8ff47" stroke-width="2" opacity="0.7"/><g class="kc-middle" style="animation-duration:28s"><circle cx="0" cy="-254" r="10" fill="#e8ff47"/><circle cx="127" cy="-220" r="8" fill="#c8e800" opacity="0.8"/><circle cx="220" cy="-127" r="8" fill="#c8e800" opacity="0.8"/><circle cx="254" cy="0" r="10" fill="#e8ff47"/><circle cx="220" cy="127" r="8" fill="#c8e800" opacity="0.8"/><circle cx="127" cy="220" r="8" fill="#c8e800" opacity="0.8"/><circle cx="0" cy="254" r="10" fill="#e8ff47"/><circle cx="-127" cy="220" r="8" fill="#c8e800" opacity="0.8"/><circle cx="-220" cy="127" r="8" fill="#c8e800" opacity="0.8"/><circle cx="-254" cy="0" r="10" fill="#e8ff47"/><circle cx="-220" cy="-127" r="8" fill="#c8e800" opacity="0.8"/><circle cx="-127" cy="-220" r="8" fill="#c8e800" opacity="0.8"/></g><circle r="155" fill="#080808" opacity="0.6"/><circle r="154" fill="none" stroke="#e8ff47" stroke-width="1.5" opacity="0.5"/><g class="kc-inner" style="animation-duration:16s"><polygon points="0,-154 10,-98 -10,-98" fill="#7fa800" opacity="0.9"/><polygon points="133,-77 91,-49 77,-70" fill="#7fa800" opacity="0.8"/><polygon points="133,77 77,70 91,49" fill="#7fa800" opacity="0.8"/><polygon points="0,154 -10,98 10,98" fill="#7fa800" opacity="0.9"/><polygon points="-133,77 -91,49 -77,70" fill="#7fa800" opacity="0.8"/><polygon points="-133,-77 -77,-70 -91,-49" fill="#7fa800" opacity="0.8"/></g><circle r="70" fill="#e8ff47"/><circle r="44" fill="#080808"/><circle r="22" fill="#e8ff47"/><circle r="8" fill="#080808"/></svg>';
+  const wm=tmp.firstElementChild;
   document.body.appendChild(wm);
-
-  // RAF rotation — setAttribute rotate(angle) pivots around (0,0) = center of viewBox
-  // Speeds match desktop hero kc-bg: outer 40s, middle 28s (reverse), inner 16s
-  const wmOuter=wm.querySelector('#wm-outer'),wmMiddle=wm.querySelector('#wm-middle'),wmInner=wm.querySelector('#wm-inner');
-  // Sync with Date.now() so rotation continues across page navigations
-  const epoch=Date.now()/1000;
-  let oA=(epoch*(360/40))%360, mA=(360-(epoch*(360/28))%360)%360, iA=(epoch*(360/16))%360;
-  let prev=performance.now();
-  (function tick(t){
-    const d=Math.min((t-prev)/1000,0.05); prev=t;
-    oA=(oA+9*d)%360;        // 40s full rotation
-    mA=(mA-12.86*d+360)%360; // 28s full rotation, counter-clockwise
-    iA=(iA+22.5*d)%360;     // 16s full rotation
-    wmOuter.setAttribute('transform','rotate('+oA+')');
-    wmMiddle.setAttribute('transform','rotate('+mA+')');
-    wmInner.setAttribute('transform','rotate('+iA+')');
-    requestAnimationFrame(tick);
-  })(performance.now());
+  // Sync watermark with its actual durations (40s/28s/16s differ from nav logo defaults)
+  syncKCElements(wm);
 }
 
 // SCROLL PROGRESS
@@ -57,11 +38,20 @@ window.addEventListener('scroll',()=>{
 
 // MOBILE NAV
 let menuOpen=false;
+// Create backdrop overlay for slide-in menu
+const menuBackdrop=document.createElement('div');
+menuBackdrop.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:495;opacity:0;pointer-events:none;transition:opacity 0.35s ease';
+document.body.appendChild(menuBackdrop);
+menuBackdrop.addEventListener('click',()=>{if(menuOpen)toggleMenu()});
+
 function toggleMenu(){
   menuOpen=!menuOpen;
   document.getElementById('navLinks').classList.toggle('open',menuOpen);
+  menuBackdrop.style.opacity=menuOpen?'1':'0';
+  menuBackdrop.style.pointerEvents=menuOpen?'auto':'none';
+  document.body.style.overflow=menuOpen?'hidden':'';
   const[t1,t2,t3]=['t1','t2','t3'].map(id=>document.getElementById(id));
-  if(menuOpen){t1.style.transform='rotate(45deg) translate(5px,5px)';t2.style.opacity='0';t3.style.transform='rotate(-45deg) translate(5px,-5px)'}
+  if(menuOpen){t1.style.transform='translateY(7px) rotate(45deg)';t2.style.opacity='0';t3.style.transform='translateY(-7px) rotate(-45deg)'}
   else{t1.style.transform='';t2.style.opacity='';t3.style.transform=''}
 }
 function closeMenu(){if(menuOpen)toggleMenu()}
@@ -86,6 +76,20 @@ document.querySelectorAll('.service-card,.why-item,.process-step,.price-card,.te
   el.style.transition=`opacity 0.55s ${i*0.07}s ease,transform 0.55s ${i*0.07}s ease,background 0.3s,padding-left 0.3s`;
   obs.observe(el);
 });
+
+// TOUCH HIGHLIGHT — home cards (green sweep on tap, then navigate)
+if('ontouchstart' in window){
+  document.querySelectorAll('.home-card').forEach(card=>{
+    card.addEventListener('touchstart',function(){this.classList.add('touch')},{passive:true});
+    card.addEventListener('touchend',function(e){
+      e.preventDefault();
+      const href=this.getAttribute('href');
+      const el=this;
+      setTimeout(()=>{el.classList.remove('touch');if(href)window.location.href=href},400);
+    });
+    card.addEventListener('touchcancel',function(){this.classList.remove('touch')});
+  });
+}
 
 // CONTACT FORM
 function submitContact(){
