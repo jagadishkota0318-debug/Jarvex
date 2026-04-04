@@ -32,6 +32,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo-text{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--white)}
 .logo-text span{color:var(--accent)}
+
+/* Sub-page nav — desktop only: remove backdrop-filter compositor clip, solid bg, larger logo */
+@media(min-width:1024px){
+  .subpage nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(8,8,8,0.97);overflow:visible}
+  .subpage .logo-wrap{overflow:visible}
+  .subpage nav .kc-mark{width:56px;height:56px;overflow:visible;display:block}
+}
 .nav-links{display:flex;align-items:center;gap:36px}
 .nav-link{color:var(--text-dim);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
 .nav-link:hover,.nav-link.active{color:var(--white)}
