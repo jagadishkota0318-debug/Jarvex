@@ -75,20 +75,50 @@ class JarvexChatbot {
   createChatbotUI() {
     const chatbotHTML = `
       <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open Jarvex Chat">
-        <svg class="chatbot-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <!-- Outer ring -->
-          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-          <!-- Rotating outer -->
-          <g class="logo-outer">
-            <polygon points="50,8 55,28 45,28" fill="currentColor" opacity="0.95"/>
-            <polygon points="80,20 68,35 72,26" fill="currentColor" opacity="0.85"/>
-            <polygon points="88,50 68,53 68,47" fill="currentColor" opacity="0.95"/>
-            <polygon points="80,80 72,74 68,65" fill="currentColor" opacity="0.85"/>
+        <svg class="chatbot-logo" viewBox="-52 -52 104 104" xmlns="http://www.w3.org/2000/svg">
+          <circle r="48" fill="none" stroke="#080808" stroke-width="0.8" opacity="0.7"/>
+          <g class="kc-outer">
+            <polygon points="0,-48 2,-38 -2,-38" fill="#080808" opacity="0.95"/>
+            <polygon points="24,-41.6 21.5,-32 17.5,-35" fill="#080808" opacity="0.85"/>
+            <polygon points="41.6,-24 35,-17.5 32,-21.5" fill="#0d0d00" opacity="0.9"/>
+            <polygon points="48,0 38,2 38,-2" fill="#080808" opacity="0.95"/>
+            <polygon points="41.6,24 32,21.5 35,17.5" fill="#0d0d00" opacity="0.9"/>
+            <polygon points="24,41.6 17.5,35 21.5,32" fill="#080808" opacity="0.85"/>
+            <polygon points="0,48 -2,38 2,38" fill="#080808" opacity="0.95"/>
+            <polygon points="-24,41.6 -21.5,32 -17.5,35" fill="#080808" opacity="0.85"/>
+            <polygon points="-41.6,24 -35,17.5 -32,21.5" fill="#0d0d00" opacity="0.9"/>
+            <polygon points="-48,0 -38,-2 -38,2" fill="#080808" opacity="0.95"/>
+            <polygon points="-41.6,-24 -32,-21.5 -35,-17.5" fill="#0d0d00" opacity="0.9"/>
+            <polygon points="-24,-41.6 -17.5,-35 -21.5,-32" fill="#080808" opacity="0.85"/>
           </g>
-          <!-- Center dot -->
-          <circle cx="50" cy="50" r="12" fill="currentColor" opacity="0.9"/>
-          <circle cx="50" cy="50" r="8" fill="#080808"/>
-          <circle cx="50" cy="50" r="4" fill="currentColor" class="logo-pulse"/>
+          <circle r="36" fill="none" stroke="#080808" stroke-width="1" opacity="0.5"/>
+          <g class="kc-middle">
+            <circle cx="0" cy="-36" r="2" fill="#080808"/>
+            <circle cx="18" cy="-31.2" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="31.2" cy="-18" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="36" cy="0" r="2" fill="#080808"/>
+            <circle cx="31.2" cy="18" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="18" cy="31.2" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="0" cy="36" r="2" fill="#080808"/>
+            <circle cx="-18" cy="31.2" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="-31.2" cy="18" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="-36" cy="0" r="2" fill="#080808"/>
+            <circle cx="-31.2" cy="-18" r="1.5" fill="#0d0d00" opacity="0.9"/>
+            <circle cx="-18" cy="-31.2" r="1.5" fill="#0d0d00" opacity="0.9"/>
+          </g>
+          <circle r="22" fill="#080808" stroke="#0d0d00" stroke-width="0.8"/>
+          <g class="kc-inner">
+            <polygon points="0,-22 1.5,-14 -1.5,-14" fill="#e8ff47" opacity="0.95"/>
+            <polygon points="19.1,-11 13,-7 11,-10" fill="#e8ff47" opacity="0.85"/>
+            <polygon points="19.1,11 11,10 13,7" fill="#e8ff47" opacity="0.85"/>
+            <polygon points="0,22 -1.5,14 1.5,14" fill="#e8ff47" opacity="0.95"/>
+            <polygon points="-19.1,11 -13,7 -11,10" fill="#e8ff47" opacity="0.85"/>
+            <polygon points="-19.1,-11 -11,-10 -13,-7" fill="#e8ff47" opacity="0.85"/>
+          </g>
+          <circle r="10" fill="#e8ff47"/>
+          <circle r="6" fill="#080808"/>
+          <circle r="3" fill="#e8ff47" class="kc-center-dot"/>
+          <circle r="1.2" fill="#080808"/>
         </svg>
       </button>
 
@@ -96,17 +126,50 @@ class JarvexChatbot {
         <!-- Header -->
         <div class="chatbot-header">
           <div class="chatbot-header-title">
-            <svg class="chatbot-header-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-              <g class="logo-outer">
-                <polygon points="50,10 54,28 46,28" fill="currentColor" opacity="0.95"/>
-                <polygon points="78,22 68,36 71,27" fill="currentColor" opacity="0.85"/>
-                <polygon points="86,50 70,52 70,48" fill="currentColor" opacity="0.95"/>
-                <polygon points="78,78 71,73 68,66" fill="currentColor" opacity="0.85"/>
+            <svg class="chatbot-header-logo" viewBox="-52 -52 104 104" xmlns="http://www.w3.org/2000/svg">
+              <circle r="48" fill="none" stroke="#e8ff47" stroke-width="0.5" opacity="0.55"/>
+              <g class="kc-outer">
+                <polygon points="0,-48 2,-38 -2,-38" fill="#e8ff47" opacity="0.95"/>
+                <polygon points="24,-41.6 21.5,-32 17.5,-35" fill="#e8ff47" opacity="0.85"/>
+                <polygon points="41.6,-24 35,-17.5 32,-21.5" fill="#c8e800" opacity="0.78"/>
+                <polygon points="48,0 38,2 38,-2" fill="#e8ff47" opacity="0.95"/>
+                <polygon points="41.6,24 32,21.5 35,17.5" fill="#c8e800" opacity="0.78"/>
+                <polygon points="24,41.6 17.5,35 21.5,32" fill="#e8ff47" opacity="0.85"/>
+                <polygon points="0,48 -2,38 2,38" fill="#e8ff47" opacity="0.95"/>
+                <polygon points="-24,41.6 -21.5,32 -17.5,35" fill="#e8ff47" opacity="0.85"/>
+                <polygon points="-41.6,24 -35,17.5 -32,21.5" fill="#c8e800" opacity="0.78"/>
+                <polygon points="-48,0 -38,-2 -38,2" fill="#e8ff47" opacity="0.95"/>
+                <polygon points="-41.6,-24 -32,-21.5 -35,-17.5" fill="#c8e800" opacity="0.78"/>
+                <polygon points="-24,-41.6 -17.5,-35 -21.5,-32" fill="#e8ff47" opacity="0.85"/>
               </g>
-              <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.9"/>
-              <circle cx="50" cy="50" r="7" fill="#080808"/>
-              <circle cx="50" cy="50" r="3.5" fill="currentColor" class="logo-pulse"/>
+              <circle r="36" fill="none" stroke="#e8ff47" stroke-width="0.6" opacity="0.4"/>
+              <g class="kc-middle">
+                <circle cx="0" cy="-36" r="2" fill="#e8ff47"/>
+                <circle cx="18" cy="-31.2" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="31.2" cy="-18" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="36" cy="0" r="2" fill="#e8ff47"/>
+                <circle cx="31.2" cy="18" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="18" cy="31.2" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="0" cy="36" r="2" fill="#e8ff47"/>
+                <circle cx="-18" cy="31.2" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="-31.2" cy="18" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="-36" cy="0" r="2" fill="#e8ff47"/>
+                <circle cx="-31.2" cy="-18" r="1.5" fill="#c8e800" opacity="0.8"/>
+                <circle cx="-18" cy="-31.2" r="1.5" fill="#c8e800" opacity="0.8"/>
+              </g>
+              <circle r="22" fill="#0d0d00" stroke="#e8ff47" stroke-width="0.8"/>
+              <g class="kc-inner">
+                <polygon points="0,-22 1.5,-14 -1.5,-14" fill="#7fa800" opacity="0.9"/>
+                <polygon points="19.1,-11 13,-7 11,-10" fill="#7fa800" opacity="0.8"/>
+                <polygon points="19.1,11 11,10 13,7" fill="#7fa800" opacity="0.8"/>
+                <polygon points="0,22 -1.5,14 1.5,14" fill="#7fa800" opacity="0.9"/>
+                <polygon points="-19.1,11 -13,7 -11,10" fill="#7fa800" opacity="0.8"/>
+                <polygon points="-19.1,-11 -11,-10 -13,-7" fill="#7fa800" opacity="0.8"/>
+              </g>
+              <circle r="10" fill="#e8ff47"/>
+              <circle r="6" fill="#080808"/>
+              <circle r="3" fill="#e8ff47" class="kc-center-dot"/>
+              <circle r="1.2" fill="#080808"/>
             </svg>
             <span>Jarvex</span>
           </div>
