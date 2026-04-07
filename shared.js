@@ -1,3 +1,35 @@
+// CLEAN URL FALLBACK — append .html only on servers without URL rewriting (e.g., Live Server).
+// Detects capability once via a HEAD request; skips entirely on Apache/production.
+(function(){
+  var pages=['/services','/process','/pricing','/about','/contact'];
+  var needsFallback=null;
+  // Test if server supports clean URLs by checking if /services resolves (HEAD request)
+  var xhr=new XMLHttpRequest();
+  xhr.open('HEAD',pages[0],true);
+  xhr.onload=function(){needsFallback=(xhr.status>=400)};
+  xhr.onerror=function(){needsFallback=true};
+  xhr.send();
+
+  document.addEventListener('click',function(e){
+    if(!needsFallback)return;
+    var a=e.target.closest('a[href]');
+    if(!a)return;
+    var href=a.getAttribute('href');
+    if(pages.indexOf(href)!==-1){
+      e.preventDefault();
+      window.location.href=href+'.html';
+    }
+  });
+  // Patch data-href used by home cards once we know
+  setTimeout(function(){
+    if(!needsFallback)return;
+    document.querySelectorAll('[data-href]').forEach(function(el){
+      var dh=el.dataset.href;
+      if(pages.indexOf(dh)!==-1) el.dataset.href=dh+'.html';
+    });
+  },500);
+})();
+
 // SYNC KC ANIMATIONS — head script handles first-paint sync via CSS animation-delay.
 // This re-syncs any dynamically added KC elements (watermark) using their actual durations.
 function syncKCElements(root){
@@ -8,11 +40,16 @@ function syncKCElements(root){
   });
 }
 
-// CURSOR
+// CURSOR — only animate when moving, stop RAF when idle
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+let mx=0,my=0,rx=0,ry=0,cursorRAF=0,cursorIdle=0;
+function animateCursor(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  if(Math.abs(mx-rx)>0.5||Math.abs(my-ry)>0.5){cursorRAF=requestAnimationFrame(animateCursor)}
+  else{cursorRAF=0}
+}
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';if(!cursorRAF)cursorRAF=requestAnimationFrame(animateCursor)});
 document.querySelectorAll('a,button,.home-card,.service-card,.why-item,.price-card,.testi-card,.process-step,.stat-row,.team-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='52px';ring.style.height='52px'});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='34px';ring.style.height='34px'});
@@ -36,12 +73,16 @@ if(window.innerWidth<=1023){
   syncKCElements(wm);
 }
 
-// SCROLL PROGRESS
-window.addEventListener('scroll',()=>{
-  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
-  const bar=document.getElementById('progressBar');
-  if(bar)bar.style.width=pct+'%';
-});
+// SCROLL PROGRESS — throttled via RAF for smoother scrolling
+var scrollRAF=0;
+window.addEventListener('scroll',function(){
+  if(!scrollRAF){scrollRAF=requestAnimationFrame(function(){
+    var pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+    var bar=document.getElementById('progressBar');
+    if(bar)bar.style.width=pct+'%';
+    scrollRAF=0;
+  })}
+},{passive:true});
 
 // MOBILE NAV
 let menuOpen=false;

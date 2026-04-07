@@ -13,8 +13,8 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
 .cursor-ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(232,255,71,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s}
 
-/* NOISE OVERLAY */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:800;opacity:.4}
+/* NOISE OVERLAY — uses CSS only, no filter for performance */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:800;opacity:.4;will-change:auto;contain:strict}
 
 /* SCROLL PROGRESS BAR */
 #progressBar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:600;width:0;transition:width .1s linear;pointer-events:none}
@@ -22,10 +22,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes kcSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes kcSpinRev{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
 @keyframes kcPulse{0%,100%{opacity:1}50%{opacity:.5}}
-.kc-outer{transform-origin:center;transform-box:fill-box;animation:kcSpin 18s linear infinite;will-change:transform}
-.kc-middle{transform-origin:center;transform-box:fill-box;animation:kcSpinRev 12s linear infinite;will-change:transform}
-.kc-inner{transform-origin:center;transform-box:fill-box;animation:kcSpin 7s linear infinite;will-change:transform}
-.kc-center-dot{animation:kcPulse 3s ease-in-out infinite;will-change:opacity}
+.kc-outer{transform-origin:center;transform-box:fill-box;animation:kcSpin 18s linear infinite}
+.kc-middle{transform-origin:center;transform-box:fill-box;animation:kcSpinRev 12s linear infinite}
+.kc-inner{transform-origin:center;transform-box:fill-box;animation:kcSpin 7s linear infinite}
+.kc-center-dot{animation:kcPulse 3s ease-in-out infinite}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 52px;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(8,8,8,0.88)}
@@ -76,8 +76,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .tag{background:var(--mid);color:var(--text-dim);font-size:10px;padding:4px 10px;letter-spacing:1px;font-family:'DM Mono',monospace;transition:background .3s,color .3s}
 
 /* TICKER */
-.ticker{border-top:1px solid var(--subtle);border-bottom:1px solid var(--subtle);padding:14px 0;overflow:hidden;background:var(--mid)}
-.ticker-track{display:flex;animation:tickAnim 22s linear infinite;width:max-content;will-change:transform}
+.ticker{border-top:1px solid var(--subtle);border-bottom:1px solid var(--subtle);padding:14px 0;overflow:hidden;background:var(--mid);contain:content}
+.ticker-track{display:flex;animation:tickAnim 22s linear infinite;width:max-content;will-change:transform;backface-visibility:hidden}
 @media(hover:hover){.ticker-track:hover{animation-play-state:paused}}
 .ticker-item{display:flex;align-items:center;gap:12px;padding:0 40px;white-space:nowrap;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)}
 .t-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}

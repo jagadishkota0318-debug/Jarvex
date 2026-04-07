@@ -324,11 +324,7 @@ class JarvexChatbot {
   }
 }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new JarvexChatbot();
-  });
-} else {
-  new JarvexChatbot();
-}
+// Initialize after page is fully loaded — don't block first paint
+function initChatbot(){new JarvexChatbot()}
+if(document.readyState==='complete'){setTimeout(initChatbot,1000)}
+else{window.addEventListener('load',function(){setTimeout(initChatbot,1000)})}
