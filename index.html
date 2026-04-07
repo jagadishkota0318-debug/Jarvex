@@ -5,6 +5,10 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Jarvex | Turning Ideas Into Digital Success</title>
 <meta name="description" content="Jarvex delivers end-to-end digital services: website design, Google & Meta ads, app development, and AI integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap"></noscript>
 <link rel="stylesheet" href="style.css">
 <script>(function(){var t=Date.now()/1000;document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'.kc-outer{animation-delay:-'+t%18+'s}.kc-middle{animation-delay:-'+t%12+'s}.kc-inner{animation-delay:-'+t%7+'s}.kc-center-dot{animation-delay:-'+t%3+'s}'}))})()</script>
 <style>
@@ -34,8 +38,9 @@
 .home-card-num{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:2.5px;margin-bottom:20px;transition:color .3s}
 .home-card-icon{margin-bottom:18px}
 .home-card-title-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.home-card-title-row h3{margin-bottom:0}
+.home-card-title-row svg{flex-shrink:0}
 .home-card h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;margin-bottom:12px;transition:color .3s}
+.home-card-title-row h3{margin:0;padding:0;line-height:1;display:flex;align-items:center;min-height:28px}
 .home-card p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:24px;transition:color .3s}
 .home-card-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:gap .2s,color .3s}
 
@@ -64,7 +69,8 @@
   .home-card p{font-size:13px}
 }
 </style>
-<link rel="stylesheet" href="chatbot-styles.css">
+<link rel="stylesheet" href="chatbot-styles.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="chatbot-styles.css"></noscript>
 </head>
 <body>
 <div id="progressBar"></div>
@@ -84,7 +90,7 @@
     <a href="/about" class="nav-link">About</a>
     <a href="/contact" class="nav-cta">Contact Us</a>
   </div>
-  <button class="nav-toggle" id="navToggle" onclick="toggleMenu()"><span id="t1"></span><span id="t2"></span><span id="t3"></span></button>
+  <button class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="Toggle navigation menu"><span id="t1"></span><span id="t2"></span><span id="t3"></span></button>
 </nav>
 
 <!-- HERO -->
@@ -151,7 +157,7 @@
     <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Refund Policy</a></div>
   </div>
 </footer>
-<script src="shared.js"></script>
-<script src="chatbot.js"></script>
+<script src="shared.js" defer></script>
+<script src="chatbot.js" defer></script>
 </body>
 </html>
