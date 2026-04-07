@@ -21,7 +21,7 @@ const chatbotData = {
     },
     ai: {
       terms: ["ai", "artificial intelligence", "chatbot", "automation", "machine learning", "gpt", "claude", "llm"],
-      response: "🤖 **AI Integrations**\n\nIntelligence meets your business.\n\n✓ GPT & Claude-powered chatbots\n✓ Automation workflows\n✓ AI-assisted features\n✓ Data pipelines & dashboards\n✓ Custom LLM fine-tuning\n\nReady to innovate? 🚀"
+      response: "🤖 **AI Integrations**\n\nIntelligence meets your business.\n\n✓ GPT & Claude-powered chatbots\n✓ Automation workflows\n✓ AI-assisted features\n✓ Custom LLM fine-tuning\n\nReady to innovate? 🚀"
     },
     process: {
       terms: ["process", "how", "workflow", "steps", "approach"],
