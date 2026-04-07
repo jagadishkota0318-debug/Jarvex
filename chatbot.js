@@ -62,6 +62,7 @@ const chatbotData = {
 class JarvexChatbot {
   constructor() {
     this.isOpen = false;
+    this.hasGreeted = false;
     this.messages = [];
     this.init();
   }
@@ -69,7 +70,6 @@ class JarvexChatbot {
   init() {
     this.createChatbotUI();
     this.attachEventListeners();
-    setTimeout(() => this.showGreeting(), 300);
   }
 
   createChatbotUI() {
@@ -225,6 +225,10 @@ class JarvexChatbot {
     chatbot?.classList.add('open');
     toggle?.classList.add('hidden');
     document.getElementById('chatbot-input')?.focus();
+    if (!this.hasGreeted) {
+      this.hasGreeted = true;
+      this.showGreeting();
+    }
   }
 
   closeChat() {
@@ -236,7 +240,6 @@ class JarvexChatbot {
   }
 
   showGreeting() {
-    if (!this.isOpen) return;
     const greeting = chatbotData.greetings[Math.floor(Math.random() * chatbotData.greetings.length)];
     this.displayBotMessage(greeting);
   }
@@ -313,8 +316,13 @@ class JarvexChatbot {
     const msgDiv = document.createElement('div');
     msgDiv.className = 'chat-message bot-msg';
     
-    // Support markdown-like formatting
-    const formattedText = text
+    // Escape HTML entities first, then apply safe markdown-like formatting
+    const escaped = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+    const formattedText = escaped
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/(?:^|\n)([🚀📈🎯💪🌱🎉👌👍😊🤔📱💻📢🤖⏱️🛡️📞🔗📧🗓️🔄1️⃣2️⃣3️⃣4️⃣✓].*?)(?=\n|$)/g, '<div class="bot-item">$1</div>');
     

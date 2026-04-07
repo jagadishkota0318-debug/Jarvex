@@ -11,7 +11,7 @@
   xhr.send();
 
   document.addEventListener('click',function(e){
-    if(!needsFallback)return;
+    if(needsFallback===null||needsFallback===false)return;
     var a=e.target.closest('a[href]');
     if(!a)return;
     var href=a.getAttribute('href');
@@ -42,7 +42,7 @@ function syncKCElements(root){
 
 // CURSOR — only animate when moving, stop RAF when idle
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0,cursorRAF=0,cursorIdle=0;
+let mx=0,my=0,rx=0,ry=0,cursorRAF=0;
 function animateCursor(){
   rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
   ring.style.left=rx+'px';ring.style.top=ry+'px';
@@ -168,13 +168,9 @@ function submitContact(){
     ['cf_name','cf_email','cf_msg'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.value.trim())el.style.outline='1px solid #ff4d4d'});
     setTimeout(()=>document.querySelectorAll('.form-group input,.form-group textarea').forEach(el=>el.style.outline=''),2200);return;
   }
-  // Show success immediately — don't make user wait for API
+  // Disable button while submitting
   const btn=document.querySelector('.form-submit-btn');
-  if(btn)btn.style.display='none';
-  var suc=document.getElementById('formSuccessMsg');if(suc)suc.style.display='block';
-  ['cf_name','cf_email','cf_phone','cf_msg'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  var selSvc=document.getElementById('cf_service');if(selSvc)selSvc.selectedIndex=0;
-  var selBud=document.getElementById('cf_budget');if(selBud)selBud.selectedIndex=0;
+  if(btn){btn.disabled=true;btn.textContent='Sending...'}
   // Build plain-text message — Web3Forms renders this inside their own template cleanly
   var body=[
     '----------------------------------------',
@@ -204,5 +200,19 @@ function submitContact(){
       replyto:email,
       message:body
     })
-  }).catch(function(){/* silent — user already saw success */});
+  }).then(function(r){
+    if(!r.ok)throw new Error('Server error');
+    return r.json();
+  }).then(function(data){
+    if(data.success){
+      if(btn)btn.style.display='none';
+      var suc=document.getElementById('formSuccessMsg');if(suc)suc.style.display='block';
+      ['cf_name','cf_email','cf_phone','cf_msg'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+      var selSvc=document.getElementById('cf_service');if(selSvc)selSvc.selectedIndex=0;
+      var selBud=document.getElementById('cf_budget');if(selBud)selBud.selectedIndex=0;
+    } else { throw new Error('Submit failed'); }
+  }).catch(function(){
+    if(btn){btn.disabled=false;btn.textContent='Send Message →'}
+    alert('Something went wrong. Please try again or email us at info@jarvex.in');
+  });
 }
