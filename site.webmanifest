@@ -1,0 +1,23 @@
+{
+  "name": "Jarvex",
+  "short_name": "Jarvex",
+  "description": "Jarvex delivers end-to-end digital services: website design, Google & Meta ads, app development, and AI integrations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

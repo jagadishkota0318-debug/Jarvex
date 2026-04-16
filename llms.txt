@@ -1,0 +1,79 @@
+# Jarvex – End-to-End Digital Growth Agency
+
+> Jarvex (jarvex.in) is a digital services agency based in India. We help businesses build, grow, and scale their online presence through website design & hosting, Google & Meta Ads management, mobile app development, and AI integrations. Contact: info@jarvex.in | +91 99495 01828.
+
+## Services
+
+- [Website Design & Hosting](https://jarvex.in/services): Custom, mobile-first websites with domain registration, hosting with SSL, on-page SEO, blog setup, WhatsApp integration, contact forms, and GA4 analytics. Optional e-commerce with product uploads and payment gateway. Delivered in 7–25 days depending on package.
+- [Google & Meta Ads Management](https://jarvex.in/services): End-to-end performance marketing — Google Search, Display & YouTube campaigns, plus Facebook & Instagram (Meta) advertising. Covers audience targeting, retargeting, A/B testing, creative refresh, and weekly reporting.
+- [Mobile App Development](https://jarvex.in/services): iOS and Android native apps and cross-platform development using Flutter and React Native. Covers discovery, UI/UX design, development, QA, App Store submission, and post-launch support. Progressive Web Apps (PWA) also available.
+- [AI Integrations](https://jarvex.in/services): Custom AI-powered chatbots, business automation workflows, LLM fine-tuning, and AI-assisted product features embedded directly into websites and business systems.
+
+## Pricing Packages (Website Design)
+
+- [Starter Package](https://jarvex.in/pricing): 1–5 page website. Includes domain (1 yr), hosting with SSL (1 yr), mobile responsive design, basic SEO, blog setup, contact forms, WhatsApp integration, GA4 + Google Tag Manager setup. Delivery: 7–10 days.
+- [Growth Package](https://jarvex.in/pricing): 5–10 page website. Everything in Starter plus advanced speed optimisation, advanced SEO setup (5 pages), and 5 initial blog uploads. Delivery: 10–15 days.
+- [E-Commerce Package](https://jarvex.in/pricing): 10–20 page online store. Everything in Growth plus full e-commerce functionality, up to 25 product uploads, payment gateway, advanced SEO (10 pages), and 10 blog uploads. Delivery: 15–25 days.
+- Performance marketing (Google & Meta Ads), mobile app development, and AI services are custom-quoted — contact Jarvex directly for pricing.
+
+## How Jarvex Works (4-Step Process)
+
+See full details: [https://jarvex.in/process](https://jarvex.in/process)
+
+1. **Discover** – Deep-dive briefing covering business goals, target audience, competitors, and brand identity. Scope, timeline, and success metrics are agreed before any work begins.
+2. **Design** – Wireframing, brand alignment, and user-experience design. Every layout decision is driven by both aesthetics and conversion intent.
+3. **Build** – Full development, content integration, quality assurance, and testing across all devices and browsers.
+4. **Launch** – Live deployment, analytics and tracking setup, and complete credential handoff. Post-launch support ensures everything runs smoothly.
+
+## Frequently Asked Questions
+
+**What does every Jarvex website package include?**
+All packages include domain registration (1 year), hosting with SSL (1 year), mobile responsive design, SEO setup, blog setup, WhatsApp integration, contact forms, and GA4/Google Tag Manager setup. No hidden costs.
+
+**How quickly can Jarvex build a website?**
+Starter: 7–10 days. Growth: 10–15 days. E-Commerce: 15–25 days. Timelines begin after the discovery call and content handoff.
+
+**Who owns the website after delivery?**
+All assets, content, credentials, and source code are fully the client's. Jarvex hands over everything at project delivery.
+
+**Does Jarvex run Google Ads and Meta Ads campaigns?**
+Yes. Jarvex provides end-to-end management of Google Ads (Search, Display, YouTube) and Meta Ads (Facebook & Instagram) for businesses across India and internationally.
+
+**Does Jarvex develop mobile apps?**
+Yes. Jarvex builds iOS and Android apps — native and cross-platform (Flutter, React Native, PWA) — from concept and design through to App Store launch.
+
+**Does Jarvex offer AI services?**
+Yes. Jarvex integrates custom AI solutions including chatbots, automation workflows, LLM-based tools, and AI-powered features into websites and business systems.
+
+**Can I add more pages or features after launch?**
+Absolutely. Extra pages and product uploads can be added at any time. Contact Jarvex for details based on your package.
+
+**What happens after the first year (domain/hosting)?**
+Domain and hosting renewals are billed annually at standard rates. All website assets remain fully yours.
+
+**What industries does Jarvex serve?**
+Jarvex works with startups, SMEs, and established businesses across all industries in India and internationally.
+
+## About Jarvex
+
+Jarvex is a full-service digital agency focused on business outcomes, not just deliverables. Founded in India, the team delivers measurable digital growth for clients ranging from early-stage startups to established brands. Core philosophy: be a growth engine, not just an agency.
+
+## Contact & Social
+
+- Website: https://jarvex.in
+- Email: info@jarvex.in
+- Phone: +91 99495 01828
+- WhatsApp: https://wa.me/919949501828
+- Instagram: https://www.instagram.com/jarvex.in
+- LinkedIn: https://www.linkedin.com/company/jarvexin
+- Facebook: https://www.facebook.com/share/1B3qKfYeZm
+- Location: India
+
+## Site Map
+
+- [Home](https://jarvex.in/): Brand overview, core services summary, key stats, and links to all sections.
+- [Services](https://jarvex.in/services): Full breakdown of all four service pillars with detailed deliverables and technology tags.
+- [Process](https://jarvex.in/process): Step-by-step explanation of Jarvex's Discover → Design → Build → Launch framework.
+- [Solutions / Pricing](https://jarvex.in/pricing): Website package tiers (Starter, Growth, E-Commerce), included features, and FAQ.
+- [About](https://jarvex.in/about): Company background, mission, values, and philosophy.
+- [Contact](https://jarvex.in/contact): Enquiry form, phone, email, and direct social media links.

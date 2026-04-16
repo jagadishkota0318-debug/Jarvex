@@ -1,0 +1,54 @@
+User-agent: *
+Allow: /
+
+# Allow favicon to be crawled by Google
+Allow: /favicon.svg
+
+# Allow AI crawlers access to llms.txt for AI agent optimization
+Allow: /llms.txt
+
+# Explicitly allow major AI search & LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+Sitemap: https://jarvex.in/sitemap.xml
+

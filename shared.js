@@ -13,9 +13,14 @@ const cur=document.getElementById('cursor'),ring=document.getElementById('cursor
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
-document.querySelectorAll('a,button,.home-card,.service-card,.why-item,.price-card,.testi-card,.process-step,.stat-row,.team-card').forEach(el=>{
+document.querySelectorAll('a,button,.home-card,.service-card,.blog-card,.why-item,.price-card,.testi-card,.process-step,.stat-row,.team-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='52px';ring.style.height='52px'});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='34px';ring.style.height='34px'});
+});
+// Invert cursor to dark on elements with yellow fill hover
+document.querySelectorAll('.home-card,.service-card,.blog-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.background='#0d0d0d';ring.style.borderColor='rgba(13,13,13,0.5)'});
+  el.addEventListener('mouseleave',()=>{cur.style.background='';ring.style.borderColor=''});
 });
 
 // MOBILE/TABLET WATERMARK — GPU-accelerated CSS animations (no RAF loop)
